@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     
     @IBAction func btnClear(_ sender: Any) {
         calcuScreen.text = nil
+        screenValue = nil
     }
     
     @IBAction func btnNine(_ sender: Any) {
@@ -109,31 +110,42 @@ class ViewController: UIViewController {
             operation = "addition"
     }
     @IBAction func btnSubtract(_ sender: Any) {
-        screenValue = calcuScreen.text
-        number = (screenValue! as NSString).floatValue
-        calcuScreen.text = nil
-        var subtraction = true
+            screenValue = calcuScreen.text
+            number = (screenValue! as NSString).floatValue
+            calcuScreen.text = nil
+            operation = "subtraction"
     }
     @IBAction func btnMultiply(_ sender: Any) {
-        lazy var screenValue = calcuScreen.text
-        lazy var number = (screenValue! as NSString).floatValue
-        calcuScreen.text = nil
-        var multiplication = true
+            lazy var screenValue = calcuScreen.text
+            lazy var number = (screenValue! as NSString).floatValue
+            calcuScreen.text = nil
+            operation  = "multiplication"
     }
     @IBAction func btnDivide(_ sender: Any) {
-        lazy var screenValue = calcuScreen.text
-        lazy var number = (screenValue! as NSString).floatValue
-        calcuScreen.text = nil
-        var division = true
+            lazy var screenValue = calcuScreen.text
+            lazy var number = (screenValue! as NSString).floatValue
+            calcuScreen.text = nil
+            operation = "division"
     }
     @IBAction func btnEquals(_ sender: Any) {
         lazy var screenNumber = calcuScreen.text
         lazy var numberTwo = (screenNumber! as NSString).floatValue
         
         if (operation == "addition"){
-            var result = number
-            
+            let result = number + numberTwo
+            calcuScreen.text = "\(result)"
+        } else if (operation == "subtraction"){
+            let result = number - numberTwo
+            calcuScreen.text = "\(result)"
+        } else if ( operation == "multiplication"){
+            let result = number * numberTwo
+            calcuScreen.text = "\(result)"
+        } else {
+            let result = number / numberTwo
+            calcuScreen.text = "\(result)"
         }
+        screenNumber = nil
+        
     }
 }
       
